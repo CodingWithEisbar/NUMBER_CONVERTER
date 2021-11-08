@@ -7,11 +7,11 @@
 #include <vector>
 #include <iomanip>
 
-long double ieee754::binary_to_float(const std::string& value) {
+float ieee754::binary_to_float(const std::string& value) {
 	this->_bin_value = value;
     unsigned int sign = (_bin_value[0] == '1'), exponnet = _operator.decimal_get(value, 1, 8);
     std::string  mantissa = _sub_operator.strip(_bin_value, 9, 32);
-    long double out = 1;
+    float out = 1;
     int str_len = mantissa.length();
     for (int i = 0; i < str_len; i++) {
         out += (mantissa[i] == '1' ? 1 : 0) * pow(2, -(i + 1));
@@ -20,16 +20,16 @@ long double ieee754::binary_to_float(const std::string& value) {
     return (sign ? -out : out);
 }
 
-long double ieee754::binary_to_double(const std::string& value) {
+double ieee754::binary_to_double(const std::string& value) {
     this->_bin_value = value;
     unsigned int sign = (_bin_value[0] == '1'), exponnet = _operator.decimal_get(value, 1, 11);
     std::string  mantissa = _sub_operator.strip(_bin_value, 12, 64);
-    long double out = 1;
+    double out = 1;
     int str_len = mantissa.length();
     for (int i = 0; i < str_len; i++) {
         out += (mantissa[i] == '1' ? 1 : 0) * pow(2, -(i + 1));
     }
-    long double pow_value = pow(2, exponnet - 1023);
+    double pow_value = pow(2, exponnet - 1023);
     out *= pow_value;
     return (sign ? -out : out);
 }

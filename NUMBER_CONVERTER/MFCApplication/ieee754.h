@@ -11,8 +11,8 @@ private:
 	float _i32_value;
 	double _i64_value;
 public:
-	long double binary_to_float(const std::string&);
-	long double binary_to_double(const std::string&);
+	float binary_to_float(const std::string&);
+	double binary_to_double(const std::string&);
 	std::string float_to_binary(const float&);
 	std::string double_to_binary(const double&);
 };

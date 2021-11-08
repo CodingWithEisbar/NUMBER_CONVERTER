@@ -70,12 +70,13 @@ void CMFCApplicationDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 
 	DDX_Text(pDX, IDC_NHAP_VAO, _giaTriNhapVao);
-	DDX_Check(pDX, IDC_DECIMAL, _check_Decimal);
-	DDX_Check(pDX, IDC_BINARY, _check_Binary);
-	DDX_Control(pDX, IDC_BINARY, hienThiKetQua);
+	DDX_Check(pDX, IDC_BUTTON_DECIMAL, _check_Decimal);
+	DDX_Check(pDX, IDC_BUTTON_BINARY, _check_Binary);
+	/*DDX_Control(pDX, IDC_BINARY, hienThiKetQua);*/
 	DDX_Control(pDX, IDC_CONVRT_TYPE2, kieuChuyenDoi);
 	DDX_Control(pDX, IDC_KETQUA, hienThiKetQua02);
-	
+
+	DDX_Control(pDX, IDC_INSERT_TYPE, kieuDuLieuNhapVao);
 }
 
 BEGIN_MESSAGE_MAP(CMFCApplicationDlg, CDialogEx)
@@ -83,8 +84,8 @@ BEGIN_MESSAGE_MAP(CMFCApplicationDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	
-	ON_BN_CLICKED(IDC_DECIMAL, &CMFCApplicationDlg::OnBnClickedDecimal)
-	ON_BN_CLICKED(IDC_BINARY, &CMFCApplicationDlg::OnBnClickedBinary)
+	/*ON_BN_CLICKED(IDC_DECIMAL, &CMFCApplicationDlg::OnBnClickedDecimal)
+	ON_BN_CLICKED(IDC_BINARY, &CMFCApplicationDlg::OnBnClickedBinary)*/
 	ON_BN_CLICKED(IDC_US_CHAR, &CMFCApplicationDlg::OnBnClickedUsChar)
 	ON_BN_CLICKED(IDC_SIGNED_CHAR, &CMFCApplicationDlg::OnBnClickedSignedChar)
 	ON_BN_CLICKED(IDC_US_SHORT, &CMFCApplicationDlg::OnBnClickedUsShort)
@@ -96,6 +97,8 @@ BEGIN_MESSAGE_MAP(CMFCApplicationDlg, CDialogEx)
 	
 	ON_BN_CLICKED(IDC_CONVERT, &CMFCApplicationDlg::OnBnClickedConvert)
 	
+	ON_BN_CLICKED(IDC_BUTTON_BINARY, &CMFCApplicationDlg::OnBnClickedButtonBinary)
+	ON_BN_CLICKED(IDC_BUTTON_DECIMAL, &CMFCApplicationDlg::OnBnClickedButtonDecimal)
 END_MESSAGE_MAP()
 
 
@@ -188,16 +191,37 @@ HCURSOR CMFCApplicationDlg::OnQueryDragIcon()
 
 
 // Xử lý thao tác chọn trên Windows
-void CMFCApplicationDlg::OnBnClickedDecimal()
-{
-	_check_Decimal = true;
-	_check_Binary = false;
-}
+//void CMFCApplicationDlg::OnBnClickedDecimal()
+//{
+//	_check_Decimal = true;
+//	_check_Binary = false;
+//}
+//
+//void CMFCApplicationDlg::OnBnClickedBinary()
+//{
+//	_check_Binary = true;
+//	_check_Decimal = false;
+//}
 
-void CMFCApplicationDlg::OnBnClickedBinary()
+void CMFCApplicationDlg::OnBnClickedButtonBinary()
 {
+	std::string convert_type = "Binary";
+	CString hien_thi(convert_type.c_str());
+	kieuDuLieuNhapVao.SetWindowText(hien_thi);
+
 	_check_Binary = true;
 	_check_Decimal = false;
+}
+
+
+void CMFCApplicationDlg::OnBnClickedButtonDecimal()
+{
+	std::string convert_type = "Decimal";
+	CString hien_thi(convert_type.c_str());
+	kieuDuLieuNhapVao.SetWindowText(hien_thi);
+
+	_check_Decimal = true;
+	_check_Binary = false;
 }
 
 
@@ -433,7 +457,7 @@ void CMFCApplicationDlg::OnBnClickedSignedInt()
 
 }
 
-
+//Giá trị kiểm tra: 01000100111111001010000010100100
 void CMFCApplicationDlg::OnBnClickedFloat()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
@@ -454,9 +478,16 @@ void CMFCApplicationDlg::OnBnClickedFloat()
 		ieee754 double_float;
 		binary bin;
 		std::string buildBinary = bin.build_binary(input, 32); //set thêm số 0
-		long double result = double_float.binary_to_float(buildBinary);
-		_ketQuaHienThi.Format(_T("%0.18f"), result);
-		hienThiKetQua02.SetWindowText(_ketQuaHienThi);
+		float result = double_float.binary_to_float(buildBinary);
+		if (result == INFINITY) {
+			std::wstring error = L"Không thể hiển thị kết quả!!";
+			CString show_error(error.c_str());
+			hienThiKetQua02.SetWindowText(show_error);
+		}
+		else {
+			_ketQuaHienThi.Format(_T("%0.18lf"), result);
+			hienThiKetQua02.SetWindowText(_ketQuaHienThi);
+		}
 
 	}
 	else if (_check_Decimal) {
@@ -491,9 +522,16 @@ void CMFCApplicationDlg::OnBnClickedDouble()
 		ieee754 double_float;
 		binary bin;
 		std::string buildBinary = bin.build_binary(input, 64);
-		long double result = double_float.binary_to_double(buildBinary);
-		_ketQuaHienThi.Format(_T("%0.18lf"), result);
-		hienThiKetQua02.SetWindowText(_ketQuaHienThi);
+		double result = double_float.binary_to_double(buildBinary);
+		if (result == INFINITY) {
+			std::wstring error = L"Không thể hiển thị kết quả!!";
+			CString show_error(error.c_str());
+			hienThiKetQua02.SetWindowText(show_error);
+		}
+		else {
+			_ketQuaHienThi.Format(_T("%0.18lf"), result);
+			hienThiKetQua02.SetWindowText(_ketQuaHienThi);
+		}
 
 	}
 	else if (_check_Decimal) {
@@ -526,5 +564,7 @@ void CMFCApplicationDlg::OnBnClickedConvert()
 	CString reset_ket_qua(res_show.c_str());
 	hienThiKetQua02.SetWindowText(reset_ket_qua);
 }
+
+
 
 

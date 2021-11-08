@@ -40,10 +40,11 @@ private:
 	int _giaTriNhapVao;
 	CString _ketQuaHienThi;
 public:
-	afx_msg void OnBnClickedDecimal();
-	afx_msg void OnBnClickedBinary();
+	/*afx_msg void OnBnClickedDecimal();
+	afx_msg void OnBnClickedBinary();*/
 	CStatic hienThiKetQua02;
 	CStatic hienThiKetQua;
+	CStatic kieuDuLieuNhapVao;
 	CStatic kieuChuyenDoi;
 	afx_msg void OnBnClickedUsChar();
 	afx_msg void OnBnClickedSignedChar();
@@ -56,4 +57,6 @@ public:
 
 	afx_msg void OnBnClickedConvert();
 	
+	afx_msg void OnBnClickedButtonBinary();
+	afx_msg void OnBnClickedButtonDecimal();
 };

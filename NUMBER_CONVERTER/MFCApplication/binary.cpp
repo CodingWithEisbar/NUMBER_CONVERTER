@@ -74,6 +74,9 @@ std::string binary::build_binary(std::string value, int bits) {
         out << value;
         result = out.str();
     }
+
+    if (length > bits) result.erase(result.begin() + bits, result.end());
+
     for (int i = 0; i < result.length(); i++) {
         if (result[i] != '0') {
             if (result[i] != '1') {
