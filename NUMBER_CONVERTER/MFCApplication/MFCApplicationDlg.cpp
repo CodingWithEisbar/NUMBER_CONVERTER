@@ -229,7 +229,7 @@ void CMFCApplicationDlg::OnBnClickedButtonDecimal()
 void CMFCApplicationDlg::OnBnClickedUsChar()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Unsigned Char";
+	std::string convert_type = "Unsigned Char (8-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -262,6 +262,9 @@ void CMFCApplicationDlg::OnBnClickedUsChar()
 
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 	
 
 }
@@ -270,7 +273,7 @@ void CMFCApplicationDlg::OnBnClickedUsChar()
 void CMFCApplicationDlg::OnBnClickedSignedChar()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Signed Char";
+	std::string convert_type = "Signed Char (8-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -303,13 +306,16 @@ void CMFCApplicationDlg::OnBnClickedSignedChar()
 
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 
 }
 
 void CMFCApplicationDlg::OnBnClickedUsShort()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Unsigned Short";
+	std::string convert_type = "Unsigned Short (16-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -342,14 +348,16 @@ void CMFCApplicationDlg::OnBnClickedUsShort()
 
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
-
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 }
 
 
 void CMFCApplicationDlg::OnBnClickedSignedShort()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Signed Short";
+	std::string convert_type = "Signed Short (16-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -382,6 +390,9 @@ void CMFCApplicationDlg::OnBnClickedSignedShort()
 
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 
 
 }
@@ -390,7 +401,7 @@ void CMFCApplicationDlg::OnBnClickedSignedShort()
 void CMFCApplicationDlg::OnBnClickedUsInt()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Unsigned Int";
+	std::string convert_type = "Unsigned Int (32-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 	//Xử lý giá trị nhập vào
@@ -418,6 +429,9 @@ void CMFCApplicationDlg::OnBnClickedUsInt()
 		
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 
 }
 
@@ -425,7 +439,7 @@ void CMFCApplicationDlg::OnBnClickedUsInt()
 void CMFCApplicationDlg::OnBnClickedSignedInt()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Signed Int";
+	std::string convert_type = "Signed Int (32-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -454,6 +468,9 @@ void CMFCApplicationDlg::OnBnClickedSignedInt()
 		
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 
 }
 
@@ -461,7 +478,7 @@ void CMFCApplicationDlg::OnBnClickedSignedInt()
 void CMFCApplicationDlg::OnBnClickedFloat()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Float";
+	std::string convert_type = "Float (32-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -499,6 +516,9 @@ void CMFCApplicationDlg::OnBnClickedFloat()
 
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 
 }
 
@@ -506,7 +526,7 @@ void CMFCApplicationDlg::OnBnClickedFloat()
 void CMFCApplicationDlg::OnBnClickedDouble()
 {
 	//Xử lý hiển thị kiểu chuyển đổi ra màn hình Windows
-	std::string convert_type = "Double";
+	std::string convert_type = "Double (64-bit)";
 	CString hien_thi(convert_type.c_str());
 	kieuChuyenDoi.SetWindowText(hien_thi);
 
@@ -543,9 +563,12 @@ void CMFCApplicationDlg::OnBnClickedDouble()
 
 		hienThiKetQua02.SetWindowText(hien_thi);
 	}
+	else {
+		MessageBox(_T("Chưa chọn kiểu dữ liệu nhập vào!"), _T("Error"), MB_ICONERROR | MB_OK);
+	}
 }
 
-
+//Thiết lập nút RESET
 void CMFCApplicationDlg::OnBnClickedConvert()
 {
 	//Reset biến
