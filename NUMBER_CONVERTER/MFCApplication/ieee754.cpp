@@ -10,7 +10,7 @@
 float ieee754::binary_to_float(const std::string& value) {
 	this->_bin_value = value;
     unsigned int sign = (_bin_value[0] == '1'), exponnet = _operator.decimal_get(value, 1, 8);
-    std::string  mantissa = _sub_operator.strip(_bin_value, 9, 32);
+    std::string  mantissa = _sub_operator.strip(_bin_value, 9, 31);
     float out = 1;
     int str_len = mantissa.length();
     for (int i = 0; i < str_len; i++) {
@@ -23,7 +23,7 @@ float ieee754::binary_to_float(const std::string& value) {
 double ieee754::binary_to_double(const std::string& value) {
     this->_bin_value = value;
     unsigned int sign = (_bin_value[0] == '1'), exponnet = _operator.decimal_get(value, 1, 11);
-    std::string  mantissa = _sub_operator.strip(_bin_value, 12, 64);
+    std::string  mantissa = _sub_operator.strip(_bin_value, 12, 63);
     double out = 1;
     int str_len = mantissa.length();
     for (int i = 0; i < str_len; i++) {
